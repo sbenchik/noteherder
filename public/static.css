@@ -1,0 +1,209 @@
+@import url("https://fonts.googleapis.com/css?family=Fauna+One|Oxygen:400,300,700");
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 14px;
+  line-height: 1.42857143;
+  margin: 0;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.App {
+  font-family: Oxygen, Helvetica, Arial, sans-serif; }
+
+h1, h2, h3, h4, h5 {
+font-family: "Fauna One";
+font-weight: 400;
+color: #008BF8; }
+
+i.fa-trash-o {
+  cursor: pointer;
+  color: #ccc;
+  vertical-align: middle;
+  margin-left: 1em; }
+  i.fa-trash-o:hover {
+    color: #999; }
+
+.Main {
+  display: flex;
+  height: 100vh;
+  align-items: stretch; }
+
+.Nav {
+  width: 60px;
+  background-color: #f3f3f3;
+  padding: 0.5rem 0; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; }
+.Nav .logo {
+  font-family: "Fauna One";
+  color: #666;
+  font-size: 3rem;
+}
+.Nav .logo img {
+  width: 30px;
+  padding-left: 4px;
+}
+
+.Nav button {
+  background-color: transparent;
+  border: 0;
+  color: #008BF8;
+  cursor: pointer;
+  margin-top: 2rem;
+  position: relative;
+  width: 60%; }
+  .Nav button img {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    transition: opacity 0.25s ease-in-out; }
+    .Nav button:hover img.outline {
+      opacity: 0; }
+
+.NoteList {
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  width: 30rem;
+}
+
+@media (max-width: 800px) {
+  .NoteList {
+    width: 20rem;
+  }
+}
+
+.NoteList h3 {
+  color: #999;
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-family: Oxygen;
+  font-weight: 300;
+  letter-spacing: 3px;
+  margin: 20px 2rem;
+}
+
+ul#notes {
+  border-top: 1px solid #eee;
+  overflow-y: scroll;
+  height: calc(100vh - 72px);
+  list-style: none;
+  margin-top: 1em;
+  padding: 0;
+  width: 100%;
+  color: #999;
+}
+
+ul#notes > li {
+  height: 100px;
+  font-size: 90%;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+ul#notes > li,
+ul#notes > li * {
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+ul#notes li .note {
+  border-top: 1px solid #eee;
+  margin: 0 2rem;
+  padding: 1rem 4px; 
+}
+ul#notes li:first-of-type .note {
+  border-top: none; 
+}
+ul#notes li:hover {
+  background-color: #008BF8;
+}
+ul#notes li:hover,
+ul#notes li:hover .note * {
+  color: white !important;
+  text-decoration: none !important;
+}
+ul#notes li:hover .note {
+  border-color: transparent;
+}
+ul#notes li .note-title {
+  color: #4a4a4a;
+  font-family: "Fauna One";
+  font-size: 120%;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+ul#notes li .note-body {
+  height: 54px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+ul#notes li .note-body * {
+  font-size: 1em !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #999 !important;
+  background: none;
+  border: none;
+}
+ul#notes li .note {
+  display: block;
+  height: 100px;
+  padding: 1em;
+  text-decoration: none;
+}
+
+.NoteForm {
+  flex-grow: 1;
+  padding: 0 3rem;
+}
+.NoteForm .form-actions {
+  padding-top: 1rem;
+  margin-left: -2rem;
+  display: flex;
+  align-content: center;
+}
+.NoteForm button {
+  border: none;
+  background: none;
+  padding: 0;
+}
+.NoteForm button i.fa {
+  color: #999;
+  font-size: 2rem;
+  margin: 0;
+}
+.NoteForm form {
+  margin: 0 auto;
+  max-width: 80rem;
+}
+input[name="title"] {
+  border: none;
+  font-size: 200%;
+  font-family: "Fauna One";
+  color: #008BF8;
+  font-weight: 400;
+  width: 100%;
+}
+input[name="title"] {
+  outline: none;
+}
+textarea {
+  border-color: #eee;
+  width: 100%;
+  height: calc(100vh - 140px);
+  font-size: 1.3em;
+}
