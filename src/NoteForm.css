@@ -1,0 +1,45 @@
+.NoteForm{
+    flex-grow: 1;
+    padding: 0 3rem;
+}
+
+.NoteForm .form-actions{
+    padding-top: 1rem;
+    margin-left: -2rem;
+    display: flex;
+    align-content: center;
+}
+
+.NoteForm button{
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+.NoteForm button i.fa{
+    color: #999;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.NoteForm form{
+    margin: 0 auto;
+    max-width: 80rem;
+}
+
+input[name="title"]{
+    border: none;
+    outline: none;
+    font-size: 200%;
+    font-family: "Fauna One";
+    color: #008BF8;
+    font-weight: 400;
+    width: 100%;
+}
+
+textarea{
+    border-color: #eee;
+    width: 100%;
+    height: calc(100vh - 140px);
+    font-size: 1.3em;
+}
