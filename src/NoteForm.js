@@ -6,7 +6,7 @@ class NoteForm extends Component{
     render(){
         return(
             <div className="NoteForm">
-                <form>
+                <form onSubmit={this.props.addNote}>
                     <p>
                         <input type="text" name="title" placeholder="New Note"/>
                     </p>
