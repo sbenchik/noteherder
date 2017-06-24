@@ -5,7 +5,16 @@ import Main from './Main'
 
 class App extends Component {
   state = {
-    notes: [],
+    notes: {
+      'note-1':{
+        title: 'Note 1!',
+        body: 'Body of note 1!',
+      },
+      'note-2':{
+        title: 'Note 2!',
+        body: 'Body of note 2!',
+      },
+    },
   }
 
   addNote = (ev) => {
@@ -23,10 +32,14 @@ class App extends Component {
     ev.target.reset()
   }
 
+  deleteNote = (ev) => {
+    return
+  }
+
   render() {
     return (
       <div className="App">
-        <Main addNote={this.addNote} />
+        <Main notes={this.state.notes} addNote={this.addNote} />
       </div>
     );
   }

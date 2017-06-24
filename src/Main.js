@@ -9,7 +9,7 @@ const Main = (props) => {
     return (
         <div className="Main">
             <Sidebar />
-            <NoteList />
+            <NoteList notes={props.notes}/>
             <NoteForm addNote={props.addNote.bind(this)}/>
         </div>
     )
