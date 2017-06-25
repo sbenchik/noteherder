@@ -10,7 +10,7 @@ const Main = (props) => {
         <div className="Main">
             <Sidebar />
             <NoteList notes={props.notes}/>
-            <NoteForm addNote={props.addNote.bind(this)}/>
+            <NoteForm saveNote={props.saveNote.bind(this)}/>
         </div>
     )
 }

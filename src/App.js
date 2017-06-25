@@ -17,29 +17,19 @@ class App extends Component {
     },
   }
 
-  addNote = (ev) => {
-    ev.preventDefault()
-    const noteTitle = ev.target.querySelector('input').value
-    const noteBody = ev.target.querySelector('textarea').value
-    const notes = {...this.state.notes}
-    const id = Date.now()
-    notes[id] = {
-      id: id,
-      title: noteTitle,
-      body: noteBody,
+  saveNote = (note) => {
+    if(!note.id){
+      note.id = Date.now()
     }
+    const notes = {...this.state.notes}
+    notes[note.id] = note
     this.setState({ notes })
-    ev.target.reset()
-  }
-
-  deleteNote = (ev) => {
-    return
   }
 
   render() {
     return (
       <div className="App">
-        <Main notes={this.state.notes} addNote={this.addNote} />
+        <Main notes={this.state.notes} saveNote={this.saveNote} />
       </div>
     );
   }
