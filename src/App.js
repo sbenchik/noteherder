@@ -5,16 +5,7 @@ import Main from './Main'
 
 class App extends Component {
   state = {
-    notes: {
-      'note-1':{
-        title: 'Note 1!',
-        body: 'Body of note 1!',
-      },
-      'note-2':{
-        title: 'Note 2!',
-        body: 'Body of note 2!',
-      },
-    },
+    notes: {},
   }
 
   saveNote = (note) => {
