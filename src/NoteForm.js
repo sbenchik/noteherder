@@ -2,12 +2,24 @@ import React, { Component } from 'react'
 
 import './NoteForm.css'
 
-class NoteForm extends Component{
-    constructor(props){
+class NoteForm extends Component {
+    constructor(props) {
         super(props)
-        
+
         this.state = {
-            note: this.blankNote(),
+            note: props.currentNote,
+        }
+    }
+
+    componentWillReceiveProps() {
+        // console.log(`props: ${this.props.currentNote.body}`)
+        // console.log(`current note: ${this.state.note.body}`)
+        if (this.state.note !== '') {
+            let note = { ...this.state.note }
+            note = this.props.currentNote
+            this.setState({ note }, () => {
+                this.props.saveNote(this.state.note)
+            })
         }
     }
 
@@ -20,7 +32,8 @@ class NoteForm extends Component{
     }
 
     handleChanges = (ev) => {
-        const note = {...this.state.note}
+        const note = { ...this.state.note }
+        console.log(ev.target.name)
         note[ev.target.name] = ev.target.value
         this.setState({ note }, () => {
             this.props.saveNote(this.state.note)
@@ -32,23 +45,23 @@ class NoteForm extends Component{
         this.setState({ note: this.blankNote() })
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div className="NoteForm">
                 <form onSubmit={this.handleSubmit}>
                     <p>
-                        <input 
-                            type="text" 
-                            name="title" 
+                        <input
+                            type="text"
+                            name="title"
                             placeholder="New Note"
                             onChange={this.handleChanges}
                             value={this.state.note.title} />
                     </p>
                     <p>
-                        <textarea 
-                            name="body" 
-                            cols="30" 
-                            rows="10" 
+                        <textarea
+                            name="body"
+                            cols="30"
+                            rows="10"
                             placeholder="Just start typing..."
                             onChange={this.handleChanges}
                             value={this.state.note.body} />
