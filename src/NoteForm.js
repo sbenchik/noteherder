@@ -11,18 +11,6 @@ class NoteForm extends Component {
         }
     }
 
-    componentWillReceiveProps() {
-        // console.log(`props: ${this.props.currentNote.body}`)
-        // console.log(`current note: ${this.state.note.body}`)
-        if (this.state.note !== '') {
-            let note = { ...this.state.note }
-            note = this.props.currentNote
-            this.setState({ note }, () => {
-                this.props.saveNote(this.state.note)
-            })
-        }
-    }
-
     blankNote = () => {
         return {
             id: null,
@@ -33,7 +21,6 @@ class NoteForm extends Component {
 
     handleChanges = (ev) => {
         const note = { ...this.state.note }
-        console.log(ev.target.name)
         note[ev.target.name] = ev.target.value
         this.setState({ note }, () => {
             this.props.saveNote(this.state.note)
