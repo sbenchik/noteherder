@@ -11,7 +11,7 @@ const Main = (props) => {
             <Sidebar />
             <NoteList 
                 notes={props.notes} 
-                setCurrentNoteID={props.setCurrentNoteID.bind(this)}/>
+                setCurrentNoteID={props.setCurrentNoteID}/>
             <NoteForm {...props}/>
         </div>
     )

@@ -11,8 +11,8 @@ class App extends Component {
     super()
     this.state = {
       notes: {},
-      currentNoteId: null,
       uid: null,
+      currentNoteID: null,
     }
   }
 
@@ -38,7 +38,7 @@ class App extends Component {
   }
 
   setCurrentNoteID = (noteId) => {
-    this.setState({ currentNoteId: noteId })
+    this.setState({ currentNoteID: noteId })
   }
 
   saveNote = (note) => {
@@ -80,15 +80,19 @@ class App extends Component {
     const actions = {
       saveNote: this.saveNote,
       removeNote: this.removeNote,
-      setNote: this.setNote,
       setCurrentNoteID: this.setCurrentNoteID,
     }
+
+    const noteData = {
+      notes: this.state.notes,
+      currentNoteID: this.state.currentNoteID,
+    }
+
     return(
       <div>
         <SignOut signOut={this.signOut}/>
         <Main 
-          notes={this.state.notes}
-          currentNote={this.state.currentNote} 
+          {...noteData}
           {...actions} />
       </div>
     )
