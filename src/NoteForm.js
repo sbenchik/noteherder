@@ -7,17 +7,8 @@ class NoteForm extends Component {
         super(props)
 
         this.state = {
-            note: props.currentNote,
+            note: this.blankNote(),
         }
-    }
-
-    componentWillReceiveProps() {
-        // TODO props is updating correctly, state isn't
-        this.setState({ note: this.props.currentNote })
-    }
-
-    componentDidUpdate(){
-        console.log(this.state.note.title)
     }
 
     blankNote = () => {

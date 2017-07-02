@@ -11,7 +11,7 @@ class App extends Component {
     super()
     this.state = {
       notes: {},
-      currentNote: this.blankNote(),
+      currentNoteId: null,
       uid: null,
     }
   }
@@ -37,25 +37,8 @@ class App extends Component {
     )
   }
 
-  blankNote = () => {
-    return {
-      id: null,
-      title: '',
-      body: '',
-    }
-  }
-
-  setNote = (ev) => {
-    const id = ev.currentTarget.id
-    const title = ev.currentTarget.children[0].textContent
-    const body = ev.currentTarget.children[1].textContent
-    this.setState({ currentNote: {
-      id: id,
-      title: title,
-      body: body,
-    } }, () => {
-      //console.log(this.state.currentNote.title)
-    })
+  setCurrentNoteID = (noteId) => {
+    this.setState({ currentNoteId: noteId })
   }
 
   saveNote = (note) => {
@@ -64,7 +47,7 @@ class App extends Component {
     }
     const notes = { ...this.state.notes }
     notes[note.id] = note
-    this.setState({ notes, currentNote: notes[note.id] })
+    this.setState({ notes })
   }
 
   removeNote = (note) => {
@@ -98,6 +81,7 @@ class App extends Component {
       saveNote: this.saveNote,
       removeNote: this.removeNote,
       setNote: this.setNote,
+      setCurrentNoteID: this.setCurrentNoteID,
     }
     return(
       <div>
