@@ -23,13 +23,13 @@ class App extends Component {
         this.authHandler(user)
       } else {
         // finished signing out
-        this.setState({ uid: null })
+        this.setState({ uid: null, notes: {} })
       }
     })
   }
 
   syncNotes = () => {
-    base.syncState(
+    this.ref = base.syncState(
       `${this.state.uid}/notes`, {
         context: this,
         state: 'notes', 
@@ -48,13 +48,13 @@ class App extends Component {
   setNote = (ev) => {
     const title = ev.currentTarget.children[0].textContent
     const body = ev.currentTarget.children[1].textContent
-    console.log(`${title}, ${body}`)
+    // console.log(`${title}, ${body}`)
     this.setState({ currentNote: {
       title: title,
       body: body,
-    } })
-    console.log(this.state.currentNote.title)
-    //document.querySelector('input').value = this.state.currentNote.title
+    } }, () => {
+      //console.log(this.state.currentNote.title)
+    })
   }
 
   saveNote = (note) => {
@@ -80,7 +80,10 @@ class App extends Component {
   signOut = () => {
     auth
       .signOut()
-      .then(this.setState({ uid: null }))
+      .then(() => {
+        base.removeBinding(this.ref)
+        this.setState({ notes: {} })
+      })
   }
 
   renderMain = () => {
