@@ -46,10 +46,11 @@ class App extends Component {
   }
 
   setNote = (ev) => {
+    const id = ev.currentTarget.id
     const title = ev.currentTarget.children[0].textContent
     const body = ev.currentTarget.children[1].textContent
-    // console.log(`${title}, ${body}`)
     this.setState({ currentNote: {
+      id: id,
       title: title,
       body: body,
     } }, () => {
@@ -63,6 +64,12 @@ class App extends Component {
     }
     const notes = { ...this.state.notes }
     notes[note.id] = note
+    this.setState({ notes, currentNote: notes[note.id] })
+  }
+
+  removeNote = (note) => {
+    const notes = {...this.state.notes}
+    notes[note.id] = null
     this.setState({ notes })
   }
 
@@ -87,14 +94,18 @@ class App extends Component {
   }
 
   renderMain = () => {
+    const actions = {
+      saveNote: this.saveNote,
+      removeNote: this.removeNote,
+      setNote: this.setNote,
+    }
     return(
       <div>
         <SignOut signOut={this.signOut}/>
         <Main 
           notes={this.state.notes}
           currentNote={this.state.currentNote} 
-          saveNote={this.saveNote} 
-          setNote={this.setNote} />
+          {...actions} />
       </div>
     )
   }
