@@ -10,11 +10,6 @@ class NoteForm extends Component {
         this.props.saveNote(note)
     }
 
-    // handleSubmit = (ev) => {
-    //     ev.preventDefault()
-    //     this.setState({ note: this.blankNote() })
-    // }
-
     handleRemove = (ev) => {
         this.props.removeNote(this.props.currentNote)
     }
@@ -40,7 +35,7 @@ class NoteForm extends Component {
                             onChange={this.handleChanges}
                             value={this.props.currentNote.body} />
                     </p>
-                    <button onClick={this.handleRemove}>
+                    <button type="button" onClick={this.handleRemove}>
                         <i className="fa fa-trash-o"></i>
                     </button>
                 </form>

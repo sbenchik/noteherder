@@ -60,7 +60,7 @@ class App extends Component {
   removeNote = (note) => {
     const notes = {...this.state.notes}
     notes[note.id] = null
-    this.setState({ notes })
+    this.setState({ notes, currentNote: this.blankNote() })
   }
 
   signedIn = () => {
