@@ -76,7 +76,7 @@ class App extends Component {
   }
 
   newNote = (ev) => {
-    this.setState({ currentNoteID: null })
+    this.setCurrentNote(this.blankNote())
   }
 
   signOut = () => {
