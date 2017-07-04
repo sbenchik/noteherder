@@ -44,6 +44,7 @@ class App extends Component {
   saveNote = (note) => {
     if (!note.id) {
       note.id = Date.now()
+      this.setCurrentNoteID(note.id)
     }
     const notes = { ...this.state.notes }
     notes[note.id] = note
@@ -68,8 +69,7 @@ class App extends Component {
   }
 
   signOut = () => {
-    auth
-      .signOut()
+    auth.signOut()
       .then(() => {
         base.removeBinding(this.ref)
         this.setState({ notes: {} })
