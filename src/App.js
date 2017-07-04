@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Main from './Main'
 import SignIn from './SignIn'
-import SignOut from './SignOut'
 import base, { auth } from './base'
 
 class App extends Component {
@@ -102,8 +101,8 @@ class App extends Component {
 
     return(
       <div>
-        <SignOut signOut={this.signOut}/>
-        <Main 
+        <Main
+          signOut={this.signOut}
           {...noteData}
           {...actions} />
       </div>
