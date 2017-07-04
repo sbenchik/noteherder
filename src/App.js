@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       notes: {},
       uid: null,
-      currentNoteID: null,
+      currentNote: this.blankNote(),
     }
   }
 
@@ -28,6 +28,14 @@ class App extends Component {
     })
   }
 
+  blankNote = () => {
+        return {
+            id: null,
+            title: '',
+            body: '',
+        }
+    }
+
   syncNotes = () => {
     this.ref = base.syncState(
       `${this.state.uid}/notes`, {
@@ -37,18 +45,17 @@ class App extends Component {
     )
   }
 
-  setCurrentNoteID = (noteId) => {
-    this.setState({ currentNoteID: noteId })
+  setCurrentNote = (note) => {
+    this.setState({ currentNote: note })
   }
 
   saveNote = (note) => {
     if (!note.id) {
       note.id = Date.now()
-      this.setCurrentNoteID(note.id)
     }
     const notes = { ...this.state.notes }
     notes[note.id] = note
-    this.setState({ notes })
+    this.setState({ notes, currentNote: note })
   }
 
   removeNote = (note) => {
@@ -68,6 +75,10 @@ class App extends Component {
       )
   }
 
+  newNote = (ev) => {
+    this.setState({ currentNoteID: null })
+  }
+
   signOut = () => {
     auth.signOut()
       .then(() => {
@@ -80,12 +91,13 @@ class App extends Component {
     const actions = {
       saveNote: this.saveNote,
       removeNote: this.removeNote,
-      setCurrentNoteID: this.setCurrentNoteID,
+      setCurrentNote: this.setCurrentNote,
+      newNote: this.newNote,
     }
 
     const noteData = {
       notes: this.state.notes,
-      currentNoteID: this.state.currentNoteID,
+      currentNote: this.state.currentNote,
     }
 
     return(

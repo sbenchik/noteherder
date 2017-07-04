@@ -3,45 +3,20 @@ import React, { Component } from 'react'
 import './NoteForm.css'
 
 class NoteForm extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            note: this.blankNote(),
-        }
-    }
-
-    componentWillReceiveProps = (nextProps) => {
-        console.log(nextProps)
-        const newId = nextProps.currentNoteID
-        if(newId !== this.state.note.id){
-            this.setState({ note: nextProps.notes[newId] })
-        }
-    }
-
-    blankNote = () => {
-        return {
-            id: null,
-            title: '',
-            body: '',
-        }
-    }
-
+    
     handleChanges = (ev) => {
-        const note = { ...this.state.note }
+        const note = { ...this.props.currentNote }
         note[ev.target.name] = ev.target.value
-        this.setState({ note }, () => {
-            this.props.saveNote(this.state.note)
-        })
+        this.props.saveNote(note)
     }
 
-    handleSubmit = (ev) => {
-        ev.preventDefault()
-        this.setState({ note: this.blankNote() })
-    }
+    // handleSubmit = (ev) => {
+    //     ev.preventDefault()
+    //     this.setState({ note: this.blankNote() })
+    // }
 
     handleRemove = (ev) => {
-        this.props.removeNote(this.state.note)
+        this.props.removeNote(this.props.currentNote)
     }
 
     render() {
@@ -54,7 +29,7 @@ class NoteForm extends Component {
                             name="title"
                             placeholder="New Note"
                             onChange={this.handleChanges}
-                            value={this.state.note.title} />
+                            value={this.props.currentNote.title} />
                     </p>
                     <p>
                         <textarea
@@ -63,7 +38,7 @@ class NoteForm extends Component {
                             rows="10"
                             placeholder="Just start typing..."
                             onChange={this.handleChanges}
-                            value={this.state.note.body} />
+                            value={this.props.currentNote.body} />
                     </p>
                     <button type="submit">
                         Save and new
