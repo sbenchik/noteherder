@@ -1,5 +1,4 @@
-.SignIn{
-    background-color: #008BF8;
+button {
     border: 0;
     border-radius: 5px;
     color: white;
@@ -12,4 +11,14 @@
     font-family: 'helvetica neue', sans-serif;
     font-size: 20px;
     font-weight: 200;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.SignInGithub{
+    background-color: #008BF8;
+}
+
+.SignInGoogle{
+    background-color: #D9534F;
 }

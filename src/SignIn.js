@@ -1,19 +1,26 @@
 import React from 'react'
 
 import './SignIn.css'
-import { auth, googleProvider } from './base'
+import { auth, githubProvider, googleProvider } from './base'
 
 const SignIn = () => {
-    const authenticate = () => {
-        auth.signInWithPopup(googleProvider)
+    const authenticate = (provider) => {
+        auth.signInWithPopup(provider)
     }
 
-    return(
-        <button 
-            className="SignIn"
-            onClick={authenticate}>
-            Sign In
-        </button>
+    return (
+        <div>
+            <button
+                className="SignInGithub"
+                onClick={() => authenticate(githubProvider)}>
+                <i className="fa fa-github"></i> Sign In With Github
+            </button>
+            <button
+                className="SignInGoogle"
+                onClick={() => authenticate(googleProvider)}>
+                <i className="fa fa-google"></i> Sign In With Google
+            </button>
+        </div>
     )
 }
 
