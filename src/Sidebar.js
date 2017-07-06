@@ -8,8 +8,7 @@ import newImg from './new.png'
 
 const Sidebar = (props) => {
     return (
-        <nav className="Sidebar">
-            <SignOut signOut={props.signOut} />            
+        <nav className="Sidebar">           
             <div className="logo">
                 <img src={quill} alt="Noteherder" />
             </div>
@@ -17,6 +16,7 @@ const Sidebar = (props) => {
                 <img src={newHover} alt="New note" />
                 <img className="outline" src={newImg} alt="New note" onClick={props.newNote}/>
             </button>
+            <SignOut signOut={props.signOut} /> 
         </nav>
     )
 }

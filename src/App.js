@@ -60,7 +60,7 @@ class App extends Component {
   removeNote = (note) => {
     const notes = {...this.state.notes}
     notes[note.id] = null
-    this.setState({ notes, currentNote: this.blankNote() })
+    this.setState({ notes }, this.newNote())
   }
 
   signedIn = () => {
@@ -82,7 +82,10 @@ class App extends Component {
     auth.signOut()
       .then(() => {
         base.removeBinding(this.ref)
-        this.setState({ notes: {} })
+        this.setState({ 
+          notes: {}, 
+          currentNote: this.blankNote(), 
+        })
       })
   }
 
@@ -92,6 +95,7 @@ class App extends Component {
       removeNote: this.removeNote,
       setCurrentNote: this.setCurrentNote,
       newNote: this.newNote,
+      signOut: this.signOut,
     }
 
     const noteData = {
@@ -102,7 +106,6 @@ class App extends Component {
     return(
       <div>
         <Main
-          signOut={this.signOut}
           {...noteData}
           {...actions} />
       </div>

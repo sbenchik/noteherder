@@ -26,6 +26,7 @@
     margin-top: 2rem;
     position: relative;
     width: 60%;
+    outline: none;
 }
 
 .Sidebar button img{
