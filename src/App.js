@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
-import './App.css';
+import './App.css'
 import Main from './Main'
 import SignIn from './SignIn'
 import base, { auth } from './base'
@@ -15,9 +16,9 @@ class App extends Component {
     }
   }
 
-  componentWillMount(){
+  componentWillMount() {
     auth.onAuthStateChanged((user) => {
-      if(user){
+      if (user) {
         // finished signing in
         this.authHandler(user)
       } else {
@@ -28,18 +29,18 @@ class App extends Component {
   }
 
   blankNote = () => {
-        return {
-            id: null,
-            title: '',
-            body: '',
-        }
+    return {
+      id: null,
+      title: '',
+      body: '',
     }
+  }
 
   syncNotes = () => {
     this.ref = base.syncState(
       `notes/${this.state.uid}`, {
         context: this,
-        state: 'notes', 
+        state: 'notes',
       })
   }
 
@@ -57,7 +58,7 @@ class App extends Component {
   }
 
   removeNote = (note) => {
-    const notes = {...this.state.notes}
+    const notes = { ...this.state.notes }
     notes[note.id] = null
     this.setState({ notes }, this.newNote())
   }
@@ -70,7 +71,7 @@ class App extends Component {
     this.setState(
       { uid: user.uid },
       this.syncNotes
-      )
+    )
   }
 
   newNote = (ev) => {
@@ -81,14 +82,23 @@ class App extends Component {
     auth.signOut()
       .then(() => {
         base.removeBinding(this.ref)
-        this.setState({ 
-          notes: {}, 
-          currentNote: this.blankNote(), 
+        this.setState({
+          notes: {},
+          currentNote: this.blankNote(),
         })
       })
   }
 
   renderMain = () => {
+
+    return (
+      <div>
+
+      </div>
+    )
+  }
+
+  render() {
     const actions = {
       saveNote: this.saveNote,
       removeNote: this.removeNote,
@@ -102,19 +112,19 @@ class App extends Component {
       currentNote: this.state.currentNote,
     }
 
-    return(
-      <div>
-        <Main
-          {...noteData}
-          {...actions} />
-      </div>
-    )
-  }
-
-  render() {
     return (
       <div className="App">
-        { this.signedIn() ? this.renderMain() : <SignIn/> }
+        <Switch>
+          <Route path="/notes" render={() => (
+            <Main
+              {...noteData}
+              {...actions} 
+            />
+          )} />
+          <Route path="/sign-in" component={SignIn}/>
+          <Route path="/" render={() => <Redirect to="/notes" />} />
+        </Switch>
+        {/*{ this.signedIn() ? this.renderMain() : <SignIn/> }*/}
       </div>
     );
   }
