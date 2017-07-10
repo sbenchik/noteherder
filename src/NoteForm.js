@@ -3,14 +3,20 @@ import React, { Component } from 'react'
 import './NoteForm.css'
 
 class NoteForm extends Component {
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         const newId = nextProps.match.params.id
 
-        if(newId !== this.props.currentNote.id){
-            const note = nextProps.notes[newId]
-            if(note){
-                this.props.setCurrentNote(note)
+        if (newId) {
+            if (newId !== this.props.currentNote.id) {
+                const note = nextProps.notes[newId]
+                if (note) {
+                    this.props.setCurrentNote(note)
+                } else if(Object.keys(nextProps.notes).length > 0){
+                    this.props.history.push('/notes')
+                }
             }
+        } else if(this.props.currentNote.id){
+            this.props.newNote()
         }
     }
 
