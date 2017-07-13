@@ -11,13 +11,15 @@ class NoteForm extends Component {
                 const note = nextProps.notes[newId]
                 if (note) {
                     this.props.setCurrentNote(note)
-                } else if(Object.keys(nextProps.notes).length > 0){
+                } 
+                else if(Object.keys(nextProps.notes).length > 0){
                     this.props.history.push('/notes')
                 }
             }
-        } else if(this.props.currentNote.id){
-            this.props.newNote()
-        }
+        } 
+        // else if(this.props.currentNote.id){
+        //     this.props.newNote()
+        // }
     }
 
     handleChanges = (ev) => {

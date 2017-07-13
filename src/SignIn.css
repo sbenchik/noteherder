@@ -1,24 +1,92 @@
-button {
-    border: 0;
-    border-radius: 5px;
-    color: white;
-    display: block;
-    margin: 0 auto;
-    padding: 20px;
-    -webkit-transition: background .2s;
-    -o-transition: background .2s;
-    transition: background .2s;
-    font-family: 'helvetica neue', sans-serif;
-    font-size: 20px;
-    font-weight: 200;
-    margin-top: 1rem;
-    cursor: pointer;
+.SignIn {
+  display: flex;
+  flex-direction: column;
+  background: url(http://unsplash.it/1500/1000?image=885&blur=50);
+  background-size: cover;
+  height: 100vh;
+}
+.SignIn main {
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.SignIn main h3 {
+  font-family: "Fauna One";
+  color: #fff;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+.SignIn p {
+  color: white;
+  font-family: "Fauna One";
+  font-size: 1.7rem;
+  font-weight: 400;
+  width: 30em;
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  padding-bottom: 2rem;
+}
+.SignIn button {
+  display: flex;
+  align-items: center;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 2.5rem auto 1.2rem;
+  padding: 20px;
+  -webkit-transition: background 0.2s;
+  -o-transition: background 0.2s;
+  transition: background 0.2s;
+  font-family: 'helvetica neue', sans-serif;
+  font-size: 20px;
+  font-weight: 200;
+}
+.SignIn button + button {
+  margin-top: 0;
+}
+.SignIn button.github {
+  background-color: #0275D8;
+  color: white;
+}
+.SignIn button.github i.fa {
+  font-size: 3rem;
+  margin-right: 0.5rem;
+}
+.SignIn button.google {
+  background-color: #D9534F;
+  color: white;
+}
+.SignIn button.google i.fa {
+  font-size: 3rem;
+  margin-right: 0.5rem;
 }
 
-.SignInGithub{
-    background-color: #008BF8;
+.Main {
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  -ms-flex-align: stretch;
+  align-items: stretch;
 }
-
-.SignInGoogle{
-    background-color: #D9534F;
+.Header {
+  background-color: #fff;
+  height: 80px;
+  padding: 0 2rem;
+  margin: 0;
+}
+.Header img {
+  width: 30px;
+  height: 30px;
+  padding-bottom: 4px;
+  margin-right: 4px;
+}
+.Header .title {
+  color: #008BF8;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 80px;
+  font-family: "Fauna One";
+  font-size: 2.2rem;
 }
