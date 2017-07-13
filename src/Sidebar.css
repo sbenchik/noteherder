@@ -1,41 +1,50 @@
-.Sidebar{
-    width: 60px;
-    background-color: #f3f3f3;
-    padding: .5rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.Sidebar {
+  width: 60px;
+  background-color: #f3f3f3;
+  padding: 0.5rem 0; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+}
+.Sidebar .logo {
+  font-family: "Fauna One";
+  color: #666;
+  font-size: 3rem;
+}
+.Sidebar .logo img {
+  width: 30px;
+  padding-left: 4px;
 }
 
-.Sidebar .logo{
-    font-family: "Fauna One";
-    color: #666;
-    font-size: 3rem;
+.Sidebar button.new-note {
+  margin-top: 2rem;
+  position: relative;
+  width: 40px;
+  outline: none;
+}
+.Sidebar button {
+  background-color: transparent;
+  border: 0;
+  color: #008BF8;
+  cursor: pointer;
+}
+.Sidebar button img {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  transition: opacity 0.25s ease-in-out;
+}
+.Sidebar a:hover img.outline {
+  opacity: 0;
 }
 
-.Sidebar .logo img{
-    width: 30px;
-    padding-left: 4px; 
+.SignOut {
+  position: absolute;
+  bottom: 1rem;
 }
-
-.Sidebar button{
-    background-color: transparent;
-    border: 0;
-    color: #008Bf8;
-    cursor: pointer;
-    margin-top: 2rem;
-    position: relative;
-    width: 60%;
-    outline: none;
+.SignOut button {
+  outline: none;
 }
-
-.Sidebar button img{
-    position: absolute;
-    left: 0%;
-    width: 100%;
-    transition: opacity .25s ease-in-out;
-}
-
-.Sidebar button:hover img.outline{
-    opacity: 0;
+.SignOut button i.fa {
+  font-size: 2.5rem;
 }
