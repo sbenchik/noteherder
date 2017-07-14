@@ -1,30 +1,38 @@
 import React, { Component } from 'react'
+import RichTextEditor from 'react-rte'
 
 import './NoteForm.css'
 
 class NoteForm extends Component {
-    componentWillReceiveProps(nextProps) {
-        const newId = nextProps.match.params.id
-
-        if (newId) {
-            if (newId !== this.props.currentNote.id) {
-                const note = nextProps.notes[newId]
-                if (note) {
-                    this.props.setCurrentNote(note)
-                } 
-                else if(Object.keys(nextProps.notes).length > 0){
-                    this.props.history.push('/notes')
-                }
-            }
-        } 
-        // else if(this.props.currentNote.id){
-        //     this.props.newNote()
-        // }
+    constructor(props){
+        super(props)
+        this.state = {
+            editorValue: RichTextEditor.createEmptyValue(),
+        }
     }
+    
+   componentWillReceiveProps = (nextProps) => {
+        const note = nextProps.currentNote
+
+        let editorValue = this.state.editorValue
+        if(editorValue.toString('html') !== note.body){
+            editorValue = RichTextEditor.createValueFromString(note.body, 'html')
+        }
+
+        this.setState({ editorValue })
+   }
 
     handleChanges = (ev) => {
         const note = { ...this.props.currentNote }
         note[ev.target.name] = ev.target.value
+        this.props.saveNote(note)
+    }
+
+    handleEditorChanges = (editorValue) => {
+        this.setState({ editorValue })
+
+        const note = {...this.props.currentNote}
+        note.body = editorValue.toString('html')
         this.props.saveNote(note)
     }
 
@@ -44,15 +52,15 @@ class NoteForm extends Component {
                             onChange={this.handleChanges}
                             value={this.props.currentNote.title} />
                     </p>
-                    <p>
-                        <textarea
+                    {/*<p>*/}
+                        <RichTextEditor
                             name="body"
                             cols="30"
                             rows="10"
                             placeholder="Just start typing..."
-                            onChange={this.handleChanges}
-                            value={this.props.currentNote.body} />
-                    </p>
+                            onChange={this.handleEditorChanges}
+                            value={this.state.editorValue} />
+                    {/*</p>*/}
                     <button type="button" onClick={this.handleRemove}>
                         <i className="fa fa-trash-o"></i>
                     </button>
