@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       notes: {},
       uid: null,
-      currentNote: this.blankNote(),
+      currentNoteId: null,
     }
   }
 
@@ -35,14 +35,6 @@ class App extends Component {
     this.setState({ uid })
   }
 
-  blankNote = () => {
-    return {
-      id: null,
-      title: '',
-      body: '',
-    }
-  }
-
   syncNotes = () => {
     this.ref = base.syncState(
       `notes/${this.state.uid}`, {
@@ -58,7 +50,7 @@ class App extends Component {
   }
 
   setCurrentNote = (note) => {
-    this.setState({ currentNote: note })
+    this.setState({ currentNoteId: note.id })
   }
 
   saveNote = (note) => {
@@ -78,9 +70,9 @@ class App extends Component {
     }
   }
 
-  removeNote = (note) => {
+  removeNote = () => {
     const notes = { ...this.state.notes }
-    notes[note.id] = null
+    notes[this.state.currentNoteId] = null
     this.setState({ notes }, this.blankNote())
     this.props.history.push('/notes')
   }
@@ -98,7 +90,7 @@ class App extends Component {
   }
 
   newNote = (ev) => {
-    this.setCurrentNote(this.blankNote())
+    this.setCurrentNote({ id: null })
   }
 
   signOut = () => {
@@ -123,7 +115,7 @@ class App extends Component {
 
     const noteData = {
       notes: this.state.notes,
-      currentNote: this.state.currentNote,
+      currentNoteId: this.state.currentNoteId,
     }
 
     return (

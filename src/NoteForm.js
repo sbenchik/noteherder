@@ -4,36 +4,50 @@ import RichTextEditor from 'react-rte'
 import './NoteForm.css'
 
 class NoteForm extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
+            note: this.blankNote(),
             editorValue: RichTextEditor.createEmptyValue(),
         }
     }
-    
-   componentWillReceiveProps = (nextProps) => {
-        const note = nextProps.currentNote
 
-        let editorValue = this.state.editorValue
-        if(editorValue.toString('html') !== note.body){
-            editorValue = RichTextEditor.createValueFromString(note.body, 'html')
+       componentWillReceiveProps = (nextProps) => {
+            const nextId = nextProps.currentNoteId
+            const note = nextProps.notes[nextId] || this.blankNote()
+
+            let editorValue = this.state.editorValue
+            if(editorValue.toString('html') !== note.body){
+                editorValue = RichTextEditor.createValueFromString(note.body, 'html')
+            }
+
+            this.setState({ note, editorValue })
+       }
+
+    blankNote = () => {
+        return {
+            id: null,
+            title: '',
+            body: '',
         }
-
-        this.setState({ editorValue })
-   }
+    }
 
     handleChanges = (ev) => {
-        const note = { ...this.props.currentNote }
+        const note = { ...this.state.note }
         note[ev.target.name] = ev.target.value
-        this.props.saveNote(note)
+        this.setState(
+            { note },
+            () => this.props.saveNote(note) 
+        )
     }
 
     handleEditorChanges = (editorValue) => {
-        this.setState({ editorValue })
-
-        const note = {...this.props.currentNote}
+        const note = { ...this.state.note }
         note.body = editorValue.toString('html')
-        this.props.saveNote(note)
+        this.setState(
+            { note, editorValue },
+            () => this.props.saveNote(note)
+        )
     }
 
     handleRemove = (ev) => {
@@ -50,17 +64,15 @@ class NoteForm extends Component {
                             name="title"
                             placeholder="New Note"
                             onChange={this.handleChanges}
-                            value={this.props.currentNote.title} />
+                            value={this.state.note.title} />
                     </p>
-                    {/*<p>*/}
-                        <RichTextEditor
-                            name="body"
-                            cols="30"
-                            rows="10"
-                            placeholder="Just start typing..."
-                            onChange={this.handleEditorChanges}
-                            value={this.state.editorValue} />
-                    {/*</p>*/}
+                    <RichTextEditor
+                        name="body"
+                        cols="30"
+                        rows="10"
+                        placeholder="Just start typing..."
+                        onChange={this.handleEditorChanges}
+                        value={this.state.editorValue} />
                     <button type="button" onClick={this.handleRemove}>
                         <i className="fa fa-trash-o"></i>
                     </button>
