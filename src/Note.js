@@ -7,10 +7,10 @@ const Note = (props) => {
                 <div className="note-title">
                     {props.note.title}
                 </div>
-                <div className="note-body">
-                    <p>
-                       {props.note.body}
-                    </p>
+                <div 
+                    className="note-body"
+                    dangerouslySetInnerHTML={{ __html: props.note.body }}
+                >
                 </div>
             </div>
         </li>

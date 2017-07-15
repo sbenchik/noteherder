@@ -1,100 +1,102 @@
-.NoteList{
-    border-left: 1px solid #eee;
-    border-right: 1px solid #eee;
-    width: 30rem;
+.NoteList {
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  width: 30rem;
 }
-
-@media (max-width: 800px){
-    .NoteList{
-        width: 20rem;
-    }
+@media (max-width: 800px) {
+  .NoteList {
+    width: 20rem;
+  }
 }
-
-.NoteList h3{
-    color: #999;
-    text-transform: uppercase;
-    font-size: 2rem;
-    font-family: Oxygen;
-    font-weight: 300;
-    letter-spacing: 3px;
-    margin: 20px 2rem;
+.NoteList h3 {
+  color: #999;
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-family: Oxygen;
+  font-weight: 300;
+  letter-spacing: 3px;
+  margin: 20px 2rem;
 }
-
-ul#notes{
-    border-top: 1px solid #eee;
-    overflow-y: scroll;
-    height: calc(100vh - 72px);
-    list-style: none;
-    margin-top: 1em;
-    padding: 0;
-    width: 100%;
-    color: #999;
+.NoteList ul#notes {
+  border-top: 1px solid #eee;
+  overflow-y: scroll;
+  height: calc(100vh - 72px);
+  list-style: none;
+  margin-top: 1em;
+  padding: 0;
+  width: 100%;
+  color: #999;
 }
-
-ul#notes > li{
-    height: 100px;
-    font-size: 90%;
-    cursor: pointer;
-    overflow: hidden;
+.NoteList ul#notes a,
+.NoteList ul#notes a:active,
+.NoteList ul#notes a:hover,
+.NoteList ul#notes a:link,
+.NoteList ul#notes a:visited {
+  color: inherit;
+  text-decoration: none;
 }
-
-ul#notes > li,
-ul#notes > li * {
-    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+.NoteList ul#notes>li {
+  height: 100px;
+  font-size: 90%;
+  cursor: pointer;
+  overflow: hidden;
 }
-
-ul#notes li .note{
-    border-top: 1px solid #eee;
-    margin: 0 2rem;
-    padding: 1rem 4px;
+.NoteList ul#notes>a,
+.NoteList ul#notes>a * {
+  -webkit-transition: background-color .1s ease-in-out, color .1s ease-in-out;
+  -o-transition: background-color .1s ease-in-out, color .1s ease-in-out;
+  transition: background-color .1s ease-in-out, color .1s ease-in-out;
 }
-
-ul#notes li:first-of-type .note{
-    border-top: none;
+.NoteList ul#notes li .note {
+  border-top: 1px solid #eee;
+  margin: 0 2rem;
+  padding: 1rem 4px;
 }
-
-ul#notes li:hover{
-    background-color: #008BF8;
+.NoteList ul#notes a:first-of-type li .note {
+  border-top: none;
 }
-
-ul#notes li:hover,
-ul#notes li:hover .note * {
-    color: white ;
-    text-decoration: none;
+.NoteList ul#notes li:hover,
+.NoteList ul#notes a.active li {
+  background-color: #008bf8;
 }
-
-ul#notes li:hover .note{
-    border-color: transparent;
+.NoteList ul#notes li:hover,
+.NoteList ul#notes li:hover .note *,
+.NoteList ul#notes a.active li,
+.NoteList ul#notes a.active li .note-body *,
+.NoteList ul#notes a.active li .note-title  {
+  color: #fff !important;
+  text-decoration: none !important;
 }
-
-ul#notes li .note-title{
-    color: #4a4a4a;
-    font-family: "Fauna One";
-    font-size: 120%;
-    font-weight: 400;
-    white-space: nowrap;
-    overflow-x: hidden;
-    text-overflow: ellipsis;
+.NoteList ul#notes li:hover .note,
+.NoteList ul#notes a.active li {
+  border-color: transparent;
 }
-
-ul#notes li .note-body{
-    height: 54px;
-    overflow: hidden;
-    margin-top: .5rem;
+.NoteList ul#notes li .note-title {
+  color: #4a4a4a;
+  font-family: Fauna One;
+  font-size: 120%;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow-x: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
-
-ul#notes li .note-body *{
-    font-size: 1em;
-    margin: 0;
-    padding: 0;
-    color: #999;
-    background: none;
-    border: none;
+.NoteList ul#notes li .note-body {
+  height: 54px;
+  overflow: hidden;
+  margin-top: .5rem;
 }
-
-ul#notes li .note{
-    display: block;
-    height: 100px;
-    padding: 1em;
-    text-decoration: none;
+.NoteList ul#notes li .note-body * {
+  font-size: 1em !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #999 !important;
+  background: none;
+  border: none;
+}
+.NoteList ul#notes li .note {
+  display: block;
+  height: 100px;
+  padding: 1em;
+  text-decoration: none;
 }
