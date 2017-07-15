@@ -1,6 +1,15 @@
 import React from 'react'
+import DOMPurify from 'dompurify'
+
 
 const Note = (props) => {
+    
+    const sanitizeNote = (noteBody) => {
+         return {
+            __html: DOMPurify.sanitize(noteBody),
+         }
+    }
+
     return (
         <li>
             <div className="note" onClick={() => props.setCurrentNote(props.note)}>
@@ -9,7 +18,7 @@ const Note = (props) => {
                 </div>
                 <div 
                     className="note-body"
-                    dangerouslySetInnerHTML={{ __html: props.note.body }}
+                    dangerouslySetInnerHTML={sanitizeNote(props.note.body)}
                 >
                 </div>
             </div>
