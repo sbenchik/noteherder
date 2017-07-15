@@ -67,6 +67,7 @@ class NoteForm extends Component {
                             value={this.state.note.title} />
                     </p>
                     <RichTextEditor
+                        className="editor"
                         name="body"
                         cols="30"
                         rows="10"

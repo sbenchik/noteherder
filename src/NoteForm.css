@@ -28,7 +28,12 @@
 .NoteForm button i.fa{
     color: #999;
     font-size: 2rem;
-    margin: 0;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.NoteForm button i.fa:hover{
+    color: #3d3d3d;
 }
 
 .NoteForm form{
@@ -46,7 +51,7 @@ input[name="title"]{
     width: 100%;
 }
 
-textarea{
+.NoteForm .editor{
     border-color: #eee;
     width: 100%;
     height: calc(100vh - 140px);
