@@ -50,10 +50,6 @@ class NoteForm extends Component {
         )
     }
 
-    handleRemove = (ev) => {
-        this.props.removeNote(this.props.currentNote)
-    }
-
     render() {
         return (
             <div className="NoteForm">
@@ -74,7 +70,7 @@ class NoteForm extends Component {
                         placeholder="Just start typing..."
                         onChange={this.handleEditorChanges}
                         value={this.state.editorValue} />
-                    <button type="button" onClick={this.handleRemove}>
+                    <button type="button" onClick={() => this.props.removeNote(this.state.note)}>
                         <i className="fa fa-trash-o"></i>
                     </button>
                 </form>

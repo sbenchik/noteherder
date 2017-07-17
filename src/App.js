@@ -70,10 +70,10 @@ class App extends Component {
     }
   }
 
-  removeNote = () => {
+  removeNote = (note) => {
     const notes = { ...this.state.notes }
-    notes[this.state.currentNoteId] = null
-    this.setState({ notes }, this.blankNote())
+    notes[note.id] = null
+    this.setState({ notes })
     this.props.history.push('/notes')
   }
 
