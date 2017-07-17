@@ -99,7 +99,6 @@ class App extends Component {
         this.stopSynching()
         this.setState({
           notes: {},
-          currentNote: this.blankNote(),
         })
       })
   }
@@ -108,7 +107,6 @@ class App extends Component {
     const actions = {
       saveNote: this.saveNote,
       removeNote: this.removeNote,
-      setCurrentNote: this.setCurrentNote,
       newNote: this.newNote,
       signOut: this.signOut,
     }

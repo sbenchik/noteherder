@@ -12,7 +12,7 @@ const Main = (props) => {
             <Sidebar signOut={props.signOut}/>
             <NoteList 
                 notes={props.notes} 
-                setCurrentNote={props.setCurrentNote}/>
+            />
             <Switch>
                 <Route path="/notes/:id" render={(navProps) => (
                     <NoteForm {...props} {...navProps}/>
