@@ -13,6 +13,7 @@ class App extends Component {
       notes: {},
       uid: null,
       currentNoteId: null,
+      firebaseNotesSynced: false,
     }
   }
 
@@ -40,6 +41,7 @@ class App extends Component {
       `notes/${this.state.uid}`, {
         context: this,
         state: 'notes',
+        then: () => this.setState({ firebaseNotesSynced: true })
       })
   }
 
@@ -112,7 +114,10 @@ class App extends Component {
         <Switch>
           <Route path="/notes" render={() => (
             this.signedIn()
-              ? <Main {...noteData} {...actions} />
+              ? <Main 
+                {...noteData} 
+                {...actions}
+                firebaseNotesSynced={this.state.firebaseNotesSynced} />
               : <Redirect to="/sign-in" />
           )} />
           <Route path="/sign-in" render={() => (

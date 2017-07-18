@@ -12,17 +12,22 @@ class NoteForm extends Component {
         }
     }
 
-       componentWillReceiveProps = (nextProps) => {
-            const nextId = nextProps.match.params.id
-            const note = nextProps.notes[nextId] || this.blankNote()
+    componentWillReceiveProps = (nextProps) => {
+        const idFromUrl = nextProps.match.params.id
+        const note = nextProps.notes[idFromUrl] || this.blankNote()
 
-            let editorValue = this.state.editorValue
-            if(editorValue.toString('html') !== note.body){
-                editorValue = RichTextEditor.createValueFromString(note.body, 'html')
-            }
+        const noteNotFound = idFromUrl && !note.id
+        if (noteNotFound && nextProps.firebaseNotesSynced) {
+            this.props.history.replace('/notes')
+        }
 
-            this.setState({ note, editorValue })
-       }
+        let editorValue = this.state.editorValue
+        if (editorValue.toString('html') !== note.body) {
+            editorValue = RichTextEditor.createValueFromString(note.body, 'html')
+        }
+
+        this.setState({ note, editorValue })
+    }
 
     blankNote = () => {
         return {
@@ -37,7 +42,7 @@ class NoteForm extends Component {
         note[ev.target.name] = ev.target.value
         this.setState(
             { note },
-            () => this.props.saveNote(note) 
+            () => this.props.saveNote(note)
         )
     }
 
