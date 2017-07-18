@@ -49,10 +49,6 @@ class App extends Component {
     }
   }
 
-  setCurrentNote = (note) => {
-    this.setState({ currentNoteId: note.id })
-  }
-
   saveNote = (note) => {
     let shouldRedirect = false
     if (!note.id) {
@@ -63,7 +59,6 @@ class App extends Component {
     notes[note.id] = note
     this.setState({
       notes,
-      currentNote: note,
     })
     if (shouldRedirect) {
       this.props.history.push(`/notes/${note.id}`)
@@ -87,10 +82,6 @@ class App extends Component {
       { uid: user.uid },
       this.syncNotes
     )
-  }
-
-  newNote = (ev) => {
-    this.setCurrentNote({ id: null })
   }
 
   signOut = () => {
