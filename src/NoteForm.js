@@ -34,6 +34,7 @@ class NoteForm extends Component {
             id: null,
             title: '',
             body: '',
+            date: Date.now(),
         }
     }
 
